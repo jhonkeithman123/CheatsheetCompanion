@@ -1,0 +1,14 @@
+[
+    {
+        "title": "Variable Declaration",
+        "syntax": "int age = 30;",
+        "notes": "In C, variables must be declared before use.",
+        "category": "Basics"
+    },
+    {
+        "title": "Loops",
+        "syntax": "for (int i = 0; i < 19; i++) { ... }",
+        "notes": "The loop header has three expressions: init, condition, increment.",
+        "category": "Control Flow"
+    }
+]
