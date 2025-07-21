@@ -16,6 +16,8 @@ class _CheatCardState extends State<CheatCard> {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
       child: InkWell(
@@ -41,20 +43,29 @@ class _CheatCardState extends State<CheatCard> {
                   style: const TextStyle(color: Colors.grey),
                 ),
 
-              if (widget.entry.syntax != null) ...[
+              if (_expanded) ...[
                 const SizedBox(height: 12),
                 Text("Syntax:", style: Theme.of(context).textTheme.labelLarge),
+
                 Container(
                   width: double.infinity,
                   padding: const EdgeInsets.all(12),
                   margin: const EdgeInsets.only(top: 4),
                   decoration: BoxDecoration(
-                    color: Colors.grey[200],
+                    color: isDarkMode
+                        ? const Color(0xFF1E2A38)
+                        : Colors.grey[200],
                     borderRadius: BorderRadius.circular(6),
-                    border: Border.all(color: Colors.grey.shade400),
+                    border: Border.all(
+                      color: isDarkMode
+                          ? Colors.blueGrey.shade700
+                          : Colors.grey.shade400,
+                    ),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withValues(),
+                        color: isDarkMode
+                            ? Colors.black.withValues(alpha: 0.3)
+                            : Colors.black.withValues(alpha: 0.3),
                         blurRadius: 3,
                         offset: const Offset(0, 1),
                       ),
@@ -64,13 +75,20 @@ class _CheatCardState extends State<CheatCard> {
                     scrollDirection: Axis.horizontal,
                     child: Text(
                       widget.entry.syntax!,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: 'monospace',
-                        color: Colors.black87,
+                        fontSize: 14,
+                        color: isDarkMode
+                            ? const Color(0xFF9CDCFE)
+                            : Colors.black87,
                       ),
                     ),
                   ),
                 ),
+
+                const SizedBox(height: 12),
+                Text("Notes:", style: Theme.of(context).textTheme.labelLarge),
+                Text(widget.entry.notes, style: const TextStyle(fontSize: 15)),
               ],
             ],
           ),

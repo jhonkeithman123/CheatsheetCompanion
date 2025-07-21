@@ -1,81 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'theme_notifier.dart';
 import 'c_cheatsheet_page.dart';
 import 'py_cheatsheet_page.dart';
 
 class HomePage extends StatelessWidget {
-  final void Function(ThemeMode) toggleTheme;
-  final ThemeMode currentTheme;
-
-  const HomePage({
-    super.key,
-    required this.toggleTheme,
-    required this.currentTheme,
-  });
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final themeNotifier = Provider.of<ThemeNotifier>(context);
+    final currrentTheme = themeNotifier.mode;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cheatsheet Companion'),
         actions: [
           PopupMenuButton<ThemeMode>(
             icon: const Icon(Icons.pallet),
-            onSelected: (mode) => toggleTheme(mode),
+            onSelected: themeNotifier.updateTheme,
             itemBuilder: (context) => [
-              PopupMenuItem(
-                value: ThemeMode.light,
-                child: Row(
-                  children: [
-                    if (currentTheme == ThemeMode.light)
-                      const Icon(Icons.check, size: 18, color: Colors.blue),
-                    const SizedBox(width: 8),
-                    Text(
-                      'Light Mode',
-                      style: TextStyle(
-                        fontWeight: currentTheme == ThemeMode.light
-                            ? FontWeight.bold
-                            : FontWeight.normal,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              PopupMenuItem(
-                value: ThemeMode.dark,
-                child: Row(
-                  children: [
-                    if (currentTheme == ThemeMode.dark)
-                      const Icon(Icons.check, size: 18, color: Colors.blue),
-                    const SizedBox(width: 8),
-                    Text(
-                      'Dark Mode',
-                      style: TextStyle(
-                        fontWeight: currentTheme == ThemeMode.dark
-                            ? FontWeight.bold
-                            : FontWeight.normal,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              PopupMenuItem(
-                value: ThemeMode.system,
-                child: Row(
-                  children: [
-                    if (currentTheme == ThemeMode.system)
-                      const Icon(Icons.check, size: 18, color: Colors.blue),
-                    const SizedBox(width: 8),
-                    Text(
-                      'Folow System',
-                      style: TextStyle(
-                        fontWeight: currentTheme == ThemeMode.system
-                            ? FontWeight.bold
-                            : FontWeight.normal,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              buildMenuItem(ThemeMode.light, currrentTheme),
+              buildMenuItem(ThemeMode.dark, currrentTheme),
+              buildMenuItem(ThemeMode.system, currrentTheme),
             ],
           ),
         ],

@@ -1,35 +1,35 @@
 import 'package:flutter/material.dart';
-import 'models/cheat_entry.dart';
+import 'package:provider/provider.dart';
 import 'utils/data_loader.dart';
-import 'widgets/cheat_card.dart';
+import 'widgets/cheatsheet_view.dart';
+import 'theme_notifier.dart';
 
 class PyCheatSheetPage extends StatelessWidget {
   const PyCheatSheetPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final themeNotifier = Provider.of<ThemeNotifier>(context);
+    final currentTheme = themeNotifier.mode;
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Python Cheatsheet')),
-      body: FutureBuilder<List<CheatEntry>>(
+      appBar: AppBar(
+        title: const Text('Python Cheatsheet'),
+        automaticallyImplyLeading: true,
+        actions: [
+          PopupMenuButton<ThemeMode>(
+            icon: Icon(Icons.pallet),
+            onSelected: themeNotifier.updateTheme,
+            itemBuilder: (context) => [
+              buildMenuItem(ThemeMode.light, currentTheme),
+              buildMenuItem(ThemeMode.dark, currentTheme),
+              buildMenuItem(ThemeMode.system, currentTheme),
+            ],
+          ),
+        ],
+      ),
+      body: CheatsheetView(
         future: DataLoader.loadCheatSheet("py_cheatsheet.json"),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState != ConnectionState.done) {
-            return const Center(child: CircularProgressIndicator());
-          }
-
-          if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return const Center(child: Text("No data found."));
-          }
-
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            child: ListView(
-              children: snapshot.data!
-                  .map((entry) => CheatCard(entry: entry))
-                  .toList(),
-            ),
-          );
-        },
       ),
     );
   }

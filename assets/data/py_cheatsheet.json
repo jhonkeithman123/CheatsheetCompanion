@@ -3,6 +3,7 @@
         "title": "Variable Declaration",
         "syntax": "age = 30",
         "notes": "In Python, variables must be declared before use. Unlike any other languages like C, Python is dynamically typed language, meaning you dont have to manually define the type of a variable cause the interpreter automatically figures it out.",
-        "category": "Basics"
+        "category": "Basics",
+        "difficulty": "Introductory"
     }
 ]
