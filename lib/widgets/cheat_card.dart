@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import '../models/cheat_entry.dart';
 
 class CheatCard extends StatefulWidget {
@@ -34,16 +35,42 @@ class _CheatCardState extends State<CheatCard> {
                 style: const TextStyle(color: Colors.grey),
               ),
 
-              if (_expanded) ...[
+              if (widget.entry.difficulty != null)
+                Text(
+                  "Difficulty: ${widget.entry.difficulty}",
+                  style: const TextStyle(color: Colors.grey),
+                ),
+
+              if (widget.entry.syntax != null) ...[
                 const SizedBox(height: 12),
                 Text("Syntax:", style: Theme.of(context).textTheme.labelLarge),
-                Text(
-                  widget.entry.syntax,
-                  style: const TextStyle(fontFamily: 'monospace'),
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(12),
+                  margin: const EdgeInsets.only(top: 4),
+                  decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    borderRadius: BorderRadius.circular(6),
+                    border: Border.all(color: Colors.grey.shade400),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(),
+                        blurRadius: 3,
+                        offset: const Offset(0, 1),
+                      ),
+                    ],
+                  ),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Text(
+                      widget.entry.syntax!,
+                      style: const TextStyle(
+                        fontFamily: 'monospace',
+                        color: Colors.black87,
+                      ),
+                    ),
+                  ),
                 ),
-                const SizedBox(height: 8),
-                Text("Notes:", style: Theme.of(context).textTheme.labelLarge),
-                Text(widget.entry.notes),
               ],
             ],
           ),

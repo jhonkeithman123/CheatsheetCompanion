@@ -1,20 +1,36 @@
 import 'package:flutter/material.dart';
 import 'home_page.dart';
-import 'models/cheat_entry.dart';
-import 'utils/data_loader.dart';
-import 'widgets/cheat_card.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  MyApp({super.key});
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  ThemeMode _themeMode = ThemeMode.system;
+
+  void _toggleTheme(ThemeMode mode) {
+    setState(() {
+      _themeMode = mode;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'Cheatsheet App', home: const HomePage());
+    return MaterialApp(
+      title: 'Cheatsheet Companion',
+      themeMode: _themeMode,
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      themeAnimationDuration: const Duration(milliseconds: 400),
+      home: HomePage(toggleTheme: _toggleTheme, currentTheme: _themeMode),
+    );
   }
 }

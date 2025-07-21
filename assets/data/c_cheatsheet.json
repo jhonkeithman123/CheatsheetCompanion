@@ -1,14 +1,86 @@
 [
     {
+        "title": "What is C?",
+        "syntax": null,
+        "notes": "C is a general-purpose programming language developed in the 1970s. Known for its speed, protability, and low-level access to memory, C is widely used in embeded system, operating systems, device drivers, and high performance applications.",
+        "category": "Overview",
+        "difficulty": "Introductory"
+    },
+    {
+        "title": "Where is C Used?",
+        "syntax": null,
+        "notes": "C is used to build softwares like Linux, Windows components, embeded firmware, microcontroller logic, network utilities, and performance-critical systems. It serves as a foundation for languagers like C++, Objective-C,  and even influences Python and Rust.",
+        "category": "Overview",
+        "difficulty": "Introductory"
+    },
+    {
+        "title": "C's Typing System",
+        "syntax": null,
+        "notes": "C uses static, strong typing. You must explicitly declare variable types, which enforces correctness but demands precision. Types like `int`, `float`, `char`, `double`, and pointers (`type*`) give fine-grained control over data and memory layout.",
+        "category": "Overview",
+        "difficulty": "Introductory"
+    },
+    {
+        "title": "Memory Management in C",
+        "syntax": "int* ptr = (int*) malloc(sizeof(int));",
+        "notes": "C does not have garbage collection. You manually allocate memory using `malloc()` and free it using `free()`. Mishandling memory can lead to leaks or undefined behavior.",
+        "category": "Memory",
+        "difficulty": "Experts"
+    },
+    {
+        "title": "Functions",
+        "syntax": "int add(int a, int b) { return a + b; }",
+        "notes": "Functions in C must declare return types and parameter types. Scope and lifetime are strictly managed, especially with stack and heap memory.",
+        "category": "Functions",
+        "difficulty": "Experts"
+    },
+    {
+        "title": "Pointers",
+        "syntax": "int x = 10; int* p = &x;",
+        "notes": "Pointers hold memory addresses. They're used for direct memory access, dynamic memory, and passing large data structures efficiently to functions.",
+        "category": "Memory",
+        "difficulty": "Intermediate"
+    },
+    {
+        "title": "Header Files",
+        "syntax": "#include <stdio.h>",
+        "notes": "Header files expose function declarations and macros. They're essential for modularity and reusability.",
+        "category": "Structure",
+        "difficulty": "Introductory"
+    },
+    {
+        "title": "Data Types",
+        "syntax": "char grade = 'A'; float pi = 3.14;",
+        "notes": "Core types include `int`, `float`, `double`, `char`, `bool`. Use `sizeof()` to inspect memory size. Custim types can be defined with `typedef` and `struct`.",
+        "category": "Basics",
+        "difficulty": "Introductory"
+    },
+    {
+        "title": "Conditional Statements",
+        "syntax": "if (score >= 90) { printf(\"A grade\"); }",
+        "notes": "C uses `if`, `else`, and `switch` for control flow. Conditions must evaluate to boolean-like integers (0 is false, non-zero is true).",
+        "category": "Control Flow",
+        "difficulty": "Introductory"
+    },
+    {
+        "title": "Comments",
+        "syntax": "// This is a single-line comment\n /* Multi-line */",
+        "notes": "Yse comments to document logic. Single-line comments use `//`, multi-line with `/* multi-line commnent */`. Avoid excessive comments for obvious logic - clarity is preffered.",
+        "category": "Basics",
+        "difficulty": "Introductory"
+    },
+    {
         "title": "Variable Declaration",
         "syntax": "int age = 30;",
-        "notes": "In C, variables must be declared before use.",
-        "category": "Basics"
+        "notes": "In C, variables must be declared before use. And you have to define Data Types, this prevents bugs but it will require some skills to always do it.",
+        "category": "Basics",
+        "difficulty": "Introductory"
     },
     {
         "title": "Loops",
         "syntax": "for (int i = 0; i < 19; i++) { ... }",
         "notes": "The loop header has three expressions: init, condition, increment.",
-        "category": "Control Flow"
+        "category": "Control Flow",
+        "difficulty": "Intermediate"
     }
 ]

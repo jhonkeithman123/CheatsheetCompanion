@@ -14,3 +14,7 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+adb pair <IP Address> <Port> - then it will prompt to enter the pair number To pair with a real android device
+
+adb connect <IP Address> <Port>
