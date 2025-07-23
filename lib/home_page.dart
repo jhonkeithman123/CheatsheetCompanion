@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'theme_notifier.dart';
 import 'c_cheatsheet_page.dart';
 import 'py_cheatsheet_page.dart';
@@ -50,10 +51,23 @@ class HomePage extends StatelessWidget {
                       ),
                       const SizedBox(height: 4),
                       const Text(
-                        'Your modular syntax referance for C, Python, and more. A fast, offline-ready toolkit for syntax, structure, and notes — built by devs for devs.',
+                        'Your modular syntax referance for C, Python, and more. A fast, offline-ready toolkit for syntax, structure, and notes — built by jhonkeithman123.',
                         style: TextStyle(fontSize: 16),
                         softWrap: true,
                         overflow: TextOverflow.visible,
+                      ),
+                      const SizedBox(height: 8),
+                      InkWell(
+                        onTap: () => launchUrl(
+                          Uri.parse(
+                            'https://github.com/jhonkeithman123/CheatsheetCompanion',
+                          ),
+                          mode: LaunchMode.externalApplication,
+                        ),
+                        child: Text(
+                          'Visit the Github repository.',
+                          style: TextStyle(color: Colors.lightBlueAccent),
+                        ),
                       ),
                     ],
                   ),

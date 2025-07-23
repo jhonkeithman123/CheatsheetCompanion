@@ -82,5 +82,12 @@
         "notes": "The loop header has three expressions: init, condition, increment.",
         "category": "Control Flow",
         "difficulty": "Intermediate"
+    },
+    {
+        "title": "Operators",
+        "syntax": "",
+        "notes": "",
+        "category": "Basics",
+        "difficulty": "Introductory"
     }
 ]
